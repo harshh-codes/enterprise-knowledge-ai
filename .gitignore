@@ -1,0 +1,26 @@
+﻿# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Editor and operating system files
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Local document data — never commit source documents
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+
+# Local indexes and generated artifacts
+*.faiss
+*.index
