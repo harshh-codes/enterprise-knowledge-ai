@@ -1,0 +1,893 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#08090d" />
+  <title>Enterprise Knowledge AI</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+    :root {
+      --bg: #08090d;
+      --panel: #0d1018;
+      --panel-light: #121622;
+      --border: #252a3a;
+      --text: #f4f5ff;
+      --muted: #9ba3bc;
+      --blue: #4978ff;
+      --purple: #7954ff;
+      --gold: #f0cb82;
+      --green: #35d99a;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse at 52% 0%, #17162d 0%, transparent 38%),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, system-ui, sans-serif;
+      font-size: 14px;
+    }
+
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+
+    .app {
+      min-height: 100vh;
+      padding: 20px;
+      display: grid;
+      grid-template-rows: 64px minmax(650px, calc(100vh - 124px));
+      gap: 16px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      min-width: 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 260px;
+    }
+
+    .brand-icon {
+      width: 54px;
+      height: 54px;
+      display: grid;
+      place-items: center;
+      font-size: 29px;
+      border: 1px solid #51417c;
+      border-radius: 18px;
+      background: linear-gradient(145deg, #201c3b, #111521);
+      box-shadow: 0 0 25px #7654ff20;
+    }
+
+    .brand h1 {
+      margin: 0 0 6px;
+      font-size: 21px;
+      letter-spacing: -0.7px;
+    }
+
+    .brand p { margin: 0; color: var(--muted); font-size: 12px; }
+
+    .search {
+      flex: 1;
+      max-width: 460px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 17px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: #0c0e14;
+      color: var(--muted);
+    }
+
+    .search input {
+      width: 100%;
+      outline: none;
+      border: 0;
+      background: transparent;
+      color: var(--text);
+    }
+
+    .top-actions { display: flex; align-items: center; gap: 12px; }
+
+    .status, .profile {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 15px;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      background: #0c0e14;
+      white-space: nowrap;
+    }
+
+    .status-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 12px #35d99a88;
+    }
+
+    .avatar {
+      width: 37px;
+      height: 37px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      font-weight: 700;
+    }
+
+    .workspace {
+      min-height: 0;
+      display: grid;
+      grid-template-columns: 250px minmax(0, 1fr) 300px;
+      gap: 16px;
+    }
+
+    .panel {
+      min-width: 0;
+      min-height: 0;
+      border: 1px solid var(--border);
+      border-radius: 21px;
+      background: linear-gradient(160deg, #0e111a, #090b10 80%);
+    }
+
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      padding: 15px 12px;
+      overflow: auto;
+    }
+
+    .nav-item {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px;
+      margin-bottom: 5px;
+      text-align: left;
+      color: #d9def2;
+      border: 1px solid transparent;
+      border-radius: 13px;
+      background: transparent;
+    }
+
+    .nav-item:hover, .nav-item.active {
+      color: white;
+      border-color: #5043b4;
+      background: linear-gradient(100deg, #263f8b66, #6a3c8b55);
+      box-shadow: inset 0 0 18px #7057ff12;
+    }
+
+    .nav-icon { width: 20px; font-size: 17px; text-align: center; }
+
+    .section-label {
+      margin: 25px 9px 12px;
+      color: #8e97b3;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.1px;
+    }
+
+    .recent-item {
+      padding: 12px 10px;
+      font-size: 12px;
+      color: #c1c8df;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .recent-item:hover { background: #ffffff09; color: white; }
+
+    .sidebar-footer {
+      margin-top: auto;
+      padding: 15px 10px 5px;
+    }
+
+    .mini-brand {
+      display: flex;
+      gap: 11px;
+      align-items: center;
+      padding: 14px 10px;
+      border: 1px solid #51417c;
+      border-radius: 15px;
+      background: linear-gradient(120deg, #1a1730, #0d111b);
+    }
+
+    .mini-brand strong { display: block; font-size: 11px; }
+    .mini-brand small { display: block; margin-top: 5px; color: var(--muted); font-size: 10px; }
+
+    .chat-panel {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .chat-heading {
+      padding: 19px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ffffff0b;
+    }
+
+    .chat-heading h2 { margin: 0; font-size: 15px; }
+    .chat-heading p { margin: 6px 0 0; color: var(--muted); font-size: 11px; }
+
+    .clear-btn {
+      padding: 9px 12px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: transparent;
+      color: var(--muted);
+    }
+
+    .clear-btn:hover { color: white; border-color: #6860a6; }
+
+    .messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 23px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    .message {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      max-width: 100%;
+    }
+
+    .message.user { justify-content: flex-end; }
+
+    .bot-avatar {
+      flex: 0 0 39px;
+      width: 39px;
+      height: 39px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      border: 1px solid #8a6a9a;
+      background: radial-gradient(circle, #34244d, #11131e);
+      box-shadow: 0 0 18px #a27cff20;
+      font-size: 18px;
+    }
+
+    .bubble {
+      max-width: min(780px, 90%);
+      padding: 17px 19px;
+      border: 1px solid #293149;
+      border-radius: 17px;
+      background: linear-gradient(135deg, #121725, #0d1018);
+      line-height: 1.75;
+      overflow-wrap: anywhere;
+    }
+
+    .bubble p { margin: 0 0 10px; }
+    .bubble p:last-child { margin-bottom: 0; }
+
+    .user .bubble {
+      background: linear-gradient(110deg, #315fe8, #4b28cb);
+      border-color: #6576ff;
+      border-radius: 17px 17px 5px 17px;
+    }
+
+    .user-avatar {
+      flex: 0 0 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #20263a;
+      font-size: 16px;
+    }
+
+    .answer-title { font-weight: 700; margin-bottom: 9px !important; }
+
+    .sources {
+      margin-top: 17px;
+      padding: 13px;
+      border: 1px solid #252d40;
+      border-radius: 14px;
+      background: #090c13;
+    }
+
+    .sources-heading {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    .source-count { display: block; color: var(--muted); font-size: 11px; font-weight: 400; }
+
+    .source-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+      margin-top: 7px;
+      border: 1px solid #252c3d;
+      border-radius: 11px;
+      background: #10141d;
+    }
+
+    .file-icon {
+      flex: 0 0 32px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 9px;
+      background: #30244e;
+      color: #bba7ff;
+    }
+
+    .source-details { flex: 1; min-width: 0; }
+    .source-name { overflow-wrap: anywhere; font-size: 11px; }
+    .source-page { margin-top: 4px; color: var(--muted); font-size: 10px; }
+
+    .source-tag {
+      color: #7ca7ff;
+      font-size: 10px;
+      white-space: nowrap;
+    }
+
+    .composer {
+      padding: 13px 17px 17px;
+      border-top: 1px solid #ffffff0b;
+      background: #0b0d13;
+    }
+
+    .composer-form {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 7px;
+      border: 1px solid #2b3044;
+      border-radius: 16px;
+      background: #11141e;
+    }
+
+    .composer input {
+      flex: 1;
+      min-width: 0;
+      padding: 12px 8px;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: white;
+    }
+
+    .composer input::placeholder { color: #8992ad; }
+
+    .send-btn {
+      width: 45px;
+      height: 45px;
+      border: 0;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #4c75ff, #7839ed);
+      color: white;
+      font-size: 20px;
+      box-shadow: 0 0 20px #6547ff30;
+    }
+
+    .send-btn:disabled { opacity: .5; cursor: wait; }
+
+    .right-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      overflow: auto;
+      padding: 13px;
+    }
+
+    .info-card {
+      padding: 18px 14px;
+      border: 1px solid #282c3b;
+      border-radius: 17px;
+      background: linear-gradient(150deg, #11141d, #0b0d13);
+    }
+
+    .documents-hero { text-align: center; }
+    .document-art { font-size: 39px; margin: 3px 0 10px; }
+    .info-card h3 { margin: 0 0 10px; font-size: 14px; }
+    .info-card p { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.7; }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 7px;
+      margin-top: 17px;
+    }
+
+    .stat {
+      min-width: 0;
+      padding: 12px 4px;
+      text-align: center;
+      border: 1px solid #272c3e;
+      border-radius: 12px;
+      background: #0c0f17;
+    }
+
+    .stat-icon { font-size: 17px; }
+    .stat strong { display: block; margin: 8px 0 4px; font-size: 17px; }
+    .stat span:last-child { color: var(--muted); font-size: 9px; }
+
+    .suggestion {
+      width: 100%;
+      margin-top: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 11px;
+      text-align: left;
+      color: #d9def1;
+      border: 1px solid #292e40;
+      border-radius: 11px;
+      background: #0c0f16;
+      font-size: 11px;
+    }
+
+    .suggestion:hover {
+      border-color: #6550c5;
+      background: #171429;
+    }
+
+    .tip-card {
+      margin-top: auto;
+      padding: 19px;
+      border-color: #51427c;
+      background:
+        radial-gradient(ellipse at bottom right, #4030a044, transparent 60%),
+        #11101c;
+    }
+
+    .tip-card strong { display: block; margin-bottom: 7px; }
+    .tip-card p { font-size: 11px; }
+
+    .typing { color: #aeb7d4; font-size: 12px; }
+    .error-text { color: #ff9d9d; }
+    .footnote { margin-top: 9px; color: #707991; font-size: 10px; text-align: center; }
+
+    @media (max-width: 1150px) {
+      .workspace { grid-template-columns: 210px minmax(0, 1fr); }
+      .right-panel { display: none; }
+      .search { max-width: 340px; }
+    }
+
+    @media (max-width: 760px) {
+      .app {
+        padding: 10px;
+        grid-template-rows: auto minmax(70vh, 1fr);
+        gap: 10px;
+      }
+
+      .topbar { flex-wrap: wrap; gap: 12px; }
+      .brand { min-width: 0; flex: 1; }
+      .brand h1 { font-size: 16px; }
+      .brand p { font-size: 10px; }
+      .brand-icon { width: 43px; height: 43px; font-size: 23px; }
+      .search { order: 3; flex-basis: 100%; max-width: none; }
+      .status { display: none; }
+      .profile { padding: 7px; font-size: 11px; }
+      .profile .avatar { width: 30px; height: 30px; }
+      .workspace { display: block; }
+      .sidebar { display: none; }
+      .chat-panel { min-height: 70vh; }
+      .messages { padding: 15px 11px; }
+      .bubble { padding: 13px; font-size: 12px; }
+      .bot-avatar, .user-avatar { flex-basis: 31px; width: 31px; height: 31px; }
+      .composer { padding: 10px; }
+      .chat-heading { padding: 15px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-icon">✳</div>
+        <div>
+          <h1>Enterprise Knowledge AI</h1>
+          <p>Policy assistant · Evidence-grounded answers</p>
+        </div>
+      </div>
+
+      <label class="search">
+        <span>⌕</span>
+        <input id="searchInput" type="search" placeholder="Search policies, ask a question..." />
+      </label>
+
+      <div class="top-actions">
+        <div class="status"><span class="status-dot"></span><span id="connectionStatus">API ready</span></div>
+        <div class="profile">
+          <div class="avatar">H</div>
+          <span>My Workspace</span>
+          <span>⌄</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <aside class="panel sidebar">
+        <button class="nav-item active" type="button"><span class="nav-icon">▣</span> Chat</button>
+        <button class="nav-item" type="button" id="documentsNav"><span class="nav-icon">▤</span> Documents</button>
+        <button class="nav-item" type="button" id="aboutNav"><span class="nav-icon">ⓘ</span> About</button>
+
+        <div class="section-label">RECENT QUESTIONS</div>
+        <div id="recentQuestions">
+          <div class="recent-item" data-question="What is the annual leave policy?">◷ &nbsp; Annual leave policy</div>
+          <div class="recent-item" data-question="What are the work from home guidelines?">◷ &nbsp; Work from home</div>
+          <div class="recent-item" data-question="What is the parental leave policy?">◷ &nbsp; Parental leave</div>
+          <div class="recent-item" data-question="How do expense reimbursements work?">◷ &nbsp; Expense reimbursement</div>
+        </div>
+
+        <div class="sidebar-footer">
+          <div class="mini-brand">
+            <div class="brand-icon" style="width:37px;height:37px;font-size:19px;border-radius:11px;">✳</div>
+            <div>
+              <strong>Enterprise Knowledge AI</strong>
+              <small>RAG · Gemini · Your Documents</small>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <section class="panel chat-panel">
+        <div class="chat-heading">
+          <div>
+            <h2>Knowledge Assistant</h2>
+            <p>Ask questions. Get answers backed by your documents.</p>
+          </div>
+          <button class="clear-btn" id="clearChat" type="button">New chat ↗</button>
+        </div>
+
+        <div class="messages" id="messages" aria-live="polite">
+          <div class="message">
+            <div class="bot-avatar">✳</div>
+            <div class="bubble">
+              <p class="answer-title">Hello! I'm your Enterprise Knowledge AI assistant.</p>
+              <p>Ask me about HR policies, benefits, leave, working hours, or anything covered in your organisation's documents.</p>
+              <p>I’ll search the available documents and show the sources used for my answer.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="composer">
+          <form class="composer-form" id="chatForm">
+            <input
+              id="questionInput"
+              type="text"
+              placeholder="Ask a question about your documents..."
+              autocomplete="off"
+              required
+            />
+            <button class="send-btn" id="sendButton" type="submit" aria-label="Send question">➤</button>
+          </form>
+          <div class="footnote">AI-generated answers can be imperfect. Always verify important policy details against the cited source.</div>
+        </div>
+      </section>
+
+      <aside class="panel right-panel">
+        <section class="info-card documents-hero" id="documentsCard">
+          <div class="document-art">▤</div>
+          <h3>Your Knowledge Base</h3>
+          <p>Answers are grounded in the documents indexed by your assistant.</p>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-icon">▤</span>
+              <strong id="documentCount">—</strong>
+              <span>Sources</span>
+            </div>
+            <div class="stat">
+              <span class="stat-icon">▥</span>
+              <strong>RAG</strong>
+              <span>Retrieval</span>
+            </div>
+            <div class="stat">
+              <span class="stat-icon">✓</span>
+              <strong>On</strong>
+              <span>Citations</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="info-card">
+          <h3>✦ &nbsp; Try asking about...</h3>
+          <button class="suggestion" data-question="What is the annual leave policy?">Annual leave policy <span>›</span></button>
+          <button class="suggestion" data-question="What are the work from home guidelines?">Work from home guidelines <span>›</span></button>
+          <button class="suggestion" data-question="What is the parental leave policy?">Parental leave benefits <span>›</span></button>
+          <button class="suggestion" data-question="How do expense reimbursements work?">Expense reimbursement <span>›</span></button>
+          <button class="suggestion" data-question="What does the employee handbook say about probation?">Probation period <span>›</span></button>
+          <button class="suggestion" data-question="What learning and development policies are available?">Learning and development <span>›</span></button>
+        </section>
+
+        <section class="info-card tip-card">
+          <strong>✦ &nbsp; Answers with evidence</strong>
+          <p>Ask a specific question to get a clearer answer. If the available documents don't contain enough information, the assistant should say so.</p>
+        </section>
+      </aside>
+    </main>
+  </div>
+
+  <script>
+    const API_URL = "http://127.0.0.1:8000/chat/";
+
+    const form = document.getElementById("chatForm");
+    const questionInput = document.getElementById("questionInput");
+    const searchInput = document.getElementById("searchInput");
+    const messages = document.getElementById("messages");
+    const sendButton = document.getElementById("sendButton");
+    const connectionStatus = document.getElementById("connectionStatus");
+    const documentCount = document.getElementById("documentCount");
+
+    const recentQuestions = [];
+
+    function scrollToBottom() {
+      messages.scrollTop = messages.scrollHeight;
+    }
+
+    function addUserMessage(question) {
+      const message = document.createElement("div");
+      message.className = "message user";
+
+      const bubble = document.createElement("div");
+      bubble.className = "bubble";
+      bubble.textContent = question;
+
+      const avatar = document.createElement("div");
+      avatar.className = "user-avatar";
+      avatar.textContent = "H";
+
+      message.append(bubble, avatar);
+      messages.appendChild(message);
+      scrollToBottom();
+    }
+
+    function addLoadingMessage() {
+      const message = document.createElement("div");
+      message.className = "message";
+      message.id = "loadingMessage";
+
+      const avatar = document.createElement("div");
+      avatar.className = "bot-avatar";
+      avatar.textContent = "✳";
+
+      const bubble = document.createElement("div");
+      bubble.className = "bubble typing";
+      bubble.textContent = "Searching documents and preparing an answer...";
+
+      message.append(avatar, bubble);
+      messages.appendChild(message);
+      scrollToBottom();
+    }
+
+    function makeSourceRow(source) {
+      const row = document.createElement("div");
+      row.className = "source-row";
+
+      const icon = document.createElement("div");
+      icon.className = "file-icon";
+      icon.textContent = "▤";
+
+      const details = document.createElement("div");
+      details.className = "source-details";
+
+      const name = document.createElement("div");
+      name.className = "source-name";
+      name.textContent = source.document || "Source document";
+
+      const page = document.createElement("div");
+      page.className = "source-page";
+      page.textContent = source.page != null ? `Page ${source.page}` : "Page not provided";
+
+      const tag = document.createElement("span");
+      tag.className = "source-tag";
+      tag.textContent = "Cited";
+
+      details.append(name, page);
+      row.append(icon, details, tag);
+      return row;
+    }
+
+    function addAssistantMessage(answer, sources = [], isError = false) {
+      const message = document.createElement("div");
+      message.className = "message";
+
+      const avatar = document.createElement("div");
+      avatar.className = "bot-avatar";
+      avatar.textContent = "✳";
+
+      const bubble = document.createElement("div");
+      bubble.className = "bubble";
+
+      const answerText = document.createElement("div");
+      answerText.style.whiteSpace = "pre-wrap";
+      answerText.style.overflowWrap = "anywhere";
+      if (isError) answerText.className = "error-text";
+      answerText.textContent = answer;
+      bubble.appendChild(answerText);
+
+      if (sources.length > 0) {
+        const sourceBox = document.createElement("div");
+        sourceBox.className = "sources";
+
+        const heading = document.createElement("div");
+        heading.className = "sources-heading";
+
+        const headingIcon = document.createElement("div");
+        headingIcon.className = "file-icon";
+        headingIcon.textContent = "▤";
+
+        const headingText = document.createElement("div");
+        headingText.append(
+          document.createTextNode("Sources"),
+          Object.assign(document.createElement("span"), {
+            className: "source-count",
+            textContent: `${sources.length} cited source${sources.length === 1 ? "" : "s"}`
+          })
+        );
+
+        heading.append(headingIcon, headingText);
+        sourceBox.appendChild(heading);
+
+        sources.forEach(source => sourceBox.appendChild(makeSourceRow(source)));
+        bubble.appendChild(sourceBox);
+
+        documentCount.textContent = String(
+          Math.max(Number(documentCount.textContent) || 0, sources.length)
+        );
+      }
+
+      message.append(avatar, bubble);
+      messages.appendChild(message);
+      scrollToBottom();
+    }
+
+    function updateRecentQuestions(question) {
+      if (!recentQuestions.includes(question)) {
+        recentQuestions.unshift(question);
+      }
+      recentQuestions.splice(6);
+
+      const container = document.getElementById("recentQuestions");
+      container.replaceChildren();
+
+      recentQuestions.forEach(item => {
+        const row = document.createElement("div");
+        row.className = "recent-item";
+        row.textContent = "◷  " + item;
+        row.title = item;
+        row.addEventListener("click", () => sendQuestion(item));
+        container.appendChild(row);
+      });
+    }
+
+    async function sendQuestion(question) {
+      question = question.trim();
+      if (!question || sendButton.disabled) return;
+
+      addUserMessage(question);
+      updateRecentQuestions(question);
+      questionInput.value = "";
+      searchInput.value = "";
+      sendButton.disabled = true;
+      connectionStatus.textContent = "Working...";
+      addLoadingMessage();
+
+      try {
+        const response = await fetch(API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ question })
+        });
+
+        const loading = document.getElementById("loadingMessage");
+        if (loading) loading.remove();
+
+        if (!response.ok) {
+          let detail = `The API returned an error (${response.status}).`;
+          try {
+            const errorData = await response.json();
+            if (errorData.detail) detail = errorData.detail;
+          } catch (_) {}
+          throw new Error(detail);
+        }
+
+        const data = await response.json();
+        addAssistantMessage(
+          data.answer || "The API returned no answer.",
+          Array.isArray(data.sources) ? data.sources : []
+        );
+        connectionStatus.textContent = "Connected";
+      } catch (error) {
+        const loading = document.getElementById("loadingMessage");
+        if (loading) loading.remove();
+
+        addAssistantMessage(
+          `I couldn't connect to the assistant API. ${error.message}\n\nCheck that your FastAPI backend is running at ${API_URL}. If the browser reports a CORS error, the backend needs CORS configuration.`,
+          [],
+          true
+        );
+        connectionStatus.textContent = "Connection issue";
+      } finally {
+        sendButton.disabled = false;
+        questionInput.focus();
+      }
+    }
+
+    form.addEventListener("submit", event => {
+      event.preventDefault();
+      sendQuestion(questionInput.value);
+    });
+
+    searchInput.addEventListener("keydown", event => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        sendQuestion(searchInput.value);
+      }
+    });
+
+    document.querySelectorAll("[data-question]").forEach(button => {
+      button.addEventListener("click", () => {
+        sendQuestion(button.dataset.question);
+      });
+    });
+
+    document.getElementById("clearChat").addEventListener("click", () => {
+      messages.replaceChildren();
+      const message = document.createElement("div");
+      message.className = "message";
+
+      const avatar = document.createElement("div");
+      avatar.className = "bot-avatar";
+      avatar.textContent = "✳";
+
+      const bubble = document.createElement("div");
+      bubble.className = "bubble";
+      bubble.textContent = "New conversation started. What would you like to know about your documents?";
+
+      message.append(avatar, bubble);
+      messages.appendChild(message);
+      questionInput.focus();
+    });
+
+    document.getElementById("documentsNav").addEventListener("click", () => {
+      document.getElementById("documentsCard").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    });
+
+    document.getElementById("aboutNav").addEventListener("click", () => {
+      addAssistantMessage(
+        "Enterprise Knowledge AI uses retrieval-augmented generation (RAG) to search indexed documents and generate evidence-grounded answers. Check the cited document and page for important policy details."
+      );
+    });
+  </script>
+</body>
+</html>

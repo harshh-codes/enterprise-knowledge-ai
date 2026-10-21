@@ -6,6 +6,7 @@ class Settings(BaseSettings):
     app_name: str = "Enterprise RAG Assistant"
     app_version: str = "0.1.0"
     debug: bool = False
+    gemini_api_key: str = ""
 
     model_config = SettingsConfigDict(
         env_file=".env",

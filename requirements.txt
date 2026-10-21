@@ -4,3 +4,6 @@ pydantic-settings>=2.2,<3
 pytest
 httpx
 PyMuPDF
+sentence-transformers
+faiss-cpu
+google-genai
