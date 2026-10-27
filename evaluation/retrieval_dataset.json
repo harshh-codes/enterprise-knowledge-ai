@@ -1,0 +1,25 @@
+
+[
+  {
+    "question": "How many annual leave days are stated in the sample HR policy?",
+    "relevant_sources": [
+      "sample_hr_policy.pdf"
+    ],
+    "notes": "The sample policy states 20 annual leave days. This tests retrieval from a specific source."
+  },
+  {
+    "question": "What do the two annual leave documents state, and is it clear which policy is current?",
+    "relevant_sources": [
+      "sample_hr_policy.pdf",
+      "annual_leave_revision_test.pdf"
+    ],
+    "notes": "One document states 20 days and the fictional revision test states 25 working days. The test document has no confirmed effective date or supersession status, so neither should automatically be treated as the current policy."
+  },
+  {
+    "question": "What topics are covered in the HR handbook?",
+    "relevant_sources": [
+      "large_hr_handbook.pdf"
+    ],
+    "notes": "The handbook includes topics such as business travel, data protection, meeting procedures, internal communication, vendor management, and business continuity."
+  }
+]

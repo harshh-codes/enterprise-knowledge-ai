@@ -1,0 +1,203 @@
+{
+  "queries_total": 6,
+  "queries_completed": 6,
+  "queries_skipped_or_failed": 0,
+  "top_k": 3,
+  "mean_source_coverage": 1.0,
+  "mean_expected_fact_coverage": 0.7222,
+  "results": [
+    {
+      "question": "How many annual leave days are stated in the sample HR policy?",
+      "status": "COMPLETED",
+      "answer": "Based on the supplied evidence, the sample HR policy (`sample_hr_policy.pdf`) states that employees receive 20 annual leave days per calendar year [Evidence 1]. \n\nAdditionally, the evidence mentions the following regarding annual leave entitlements in other contexts:\n* The standard annual leave entitlement is 20 working days per calendar year [Evidence 2].\n* A synthetic HR policy revision test states that employees receive 25 working days of annual leave per calendar year, though this document is for a conflict-handling test only and has not been approved by any real organization, with no effective date or supersession status specified [Evidence 3].",
+      "expected_sources": [
+        "sample_hr_policy.pdf"
+      ],
+      "retrieved_source_documents": [
+        "annual_leave_revision_test.pdf",
+        "large_hr_handbook.pdf",
+        "sample_hr_policy.pdf"
+      ],
+      "missing_expected_sources": [],
+      "source_coverage": 1.0,
+      "expected_fact_count": 1,
+      "matched_facts": [
+        "20 annual leave days per calendar year"
+      ],
+      "missing_facts": [],
+      "fact_coverage": 1.0,
+      "expected_facts_for_manual_review": [
+        "20 annual leave days per calendar year"
+      ],
+      "manual_answer_correctness": null,
+      "manual_citation_support": null
+    },
+    {
+      "question": "What do the two annual leave documents state, and is it clear which policy is current?",
+      "status": "COMPLETED",
+      "answer": "Based on the provided evidence, the annual leave documents state the following entitlements:\n\n* [Evidence 1] and [Evidence 3] state that the standard annual leave entitlement is 20 working days (or 20 annual leave days) per calendar year [Evidence 1, 3]. Both documents also state that employees must obtain manager approval before taking annual leave [Evidence 1, 3]. *(Note: Evidence 1 explicitly notes it is part of a synthetic test handbook [Evidence 1].)*\n* [Evidence 2] states that employees receive 25 working days of annual leave per calendar year and that employees must obtain manager approval before taking annual leave [Evidence 2]. This document is noted as fictional test content that has not been approved by any real organization [Evidence 2].\n\n**Current Policy Status:**\nIt is not clear which policy is current [Evidence 1, 2, 3]. Evidence 2 states that no effective date or supersession status is specified in that test document [Evidence 2], and the supplied evidence cannot establish which policy is current.",
+      "expected_sources": [
+        "annual_leave_revision_test.pdf",
+        "sample_hr_policy.pdf"
+      ],
+      "retrieved_source_documents": [
+        "annual_leave_revision_test.pdf",
+        "large_hr_handbook.pdf",
+        "sample_hr_policy.pdf"
+      ],
+      "missing_expected_sources": [],
+      "source_coverage": 1.0,
+      "expected_fact_count": 3,
+      "matched_facts": [],
+      "missing_facts": [
+        "sample HR policy states 20 days",
+        "fictional revision test states 25 working days",
+        "current policy cannot be determined from these documents"
+      ],
+      "fact_coverage": 0.0,
+      "expected_facts_for_manual_review": [
+        "sample HR policy states 20 days",
+        "fictional revision test states 25 working days",
+        "current policy cannot be determined from these documents"
+      ],
+      "manual_answer_correctness": null,
+      "manual_citation_support": null
+    },
+    {
+      "question": "What topics are covered in the HR handbook?",
+      "status": "COMPLETED",
+      "answer": "Based on the supplied evidence, the HR handbook covers the following topics:\n\n* Business Travel [Evidence 3]\n* Data Protection [Evidence 3]\n* Workplace Safety [Evidence 2]\n* Payroll Processing [Evidence 2]\n* Expense Reporting [Evidence 1]\n* Training Requirements [Evidence 1]\n\nPlease note that this may not be an exhaustive list of all topics in the handbook, as the retrieved evidence is incomplete.",
+      "expected_sources": [
+        "large_hr_handbook.pdf"
+      ],
+      "retrieved_source_documents": [
+        "large_hr_handbook.pdf"
+      ],
+      "missing_expected_sources": [],
+      "source_coverage": 1.0,
+      "expected_fact_count": 6,
+      "matched_facts": [
+        "business travel",
+        "data protection"
+      ],
+      "missing_facts": [
+        "meeting procedures",
+        "internal communication",
+        "vendor management",
+        "business continuity"
+      ],
+      "fact_coverage": 0.3333,
+      "expected_facts_for_manual_review": [
+        "business travel",
+        "data protection",
+        "meeting procedures",
+        "internal communication",
+        "vendor management",
+        "business continuity"
+      ],
+      "manual_answer_correctness": null,
+      "manual_citation_support": null
+    },
+    {
+      "question": "What does the handbook say about meeting procedures?",
+      "status": "COMPLETED",
+      "answer": "According to the provided handbook sections, regarding meeting procedures, employees and managers must:\n\n* Follow the documented workflow [Evidence 1, Evidence 2, Evidence 3].\n* Retain relevant records [Evidence 1, Evidence 2, Evidence 3].\n* Use approved systems [Evidence 1, Evidence 2, Evidence 3].\n* Escalate unusual circumstances through the appropriate departmental channel [Evidence 1, Evidence 2, Evidence 3].\n\nAdditionally, requirements may depend on the employee's role, location, approval level, and applicable internal procedures, and supporting records should be accurate, complete, and available for authorized review [Evidence 1, Evidence 2, Evidence 3].",
+      "expected_sources": [
+        "large_hr_handbook.pdf"
+      ],
+      "retrieved_source_documents": [
+        "large_hr_handbook.pdf"
+      ],
+      "missing_expected_sources": [],
+      "source_coverage": 1.0,
+      "expected_fact_count": 5,
+      "matched_facts": [
+        "meeting procedures",
+        "documented workflow",
+        "retain relevant records",
+        "approved systems",
+        "escalate unusual circumstances"
+      ],
+      "missing_facts": [],
+      "fact_coverage": 1.0,
+      "expected_facts_for_manual_review": [
+        "meeting procedures",
+        "documented workflow",
+        "retain relevant records",
+        "approved systems",
+        "escalate unusual circumstances"
+      ],
+      "manual_answer_correctness": null,
+      "manual_citation_support": null
+    },
+    {
+      "question": "What does the handbook say about vendor management?",
+      "status": "COMPLETED",
+      "answer": "Based on the provided evidence, the handbook outlines the following regarding Vendor Management:\n\n* **Procurement Department (Section HR-033, Page 33 and Section HR-093, Page 93):** Employees and managers must follow the documented workflow, retain relevant records, use approved systems, and escalate unusual circumstances through the appropriate departmental channel [Evidence 1, Evidence 2]. Requirements may depend on the employee's role, location, approval level, and applicable internal procedures, and supporting records must be accurate, complete, and available for authorized review [Evidence 1, Evidence 2].\n* **Finance Department (Section HR-050, Page 50):** Employees and managers must follow the documented workflow, retain relevant records, use approved systems, and escalate unusual circumstances through the appropriate departmental channel [Evidence 3]. Requirements may depend on the employee's role, location, approval level, and applicable internal procedures, and supporting records must be accurate, complete, and available for authorized review [Evidence 3].\n\nThe evidence does not establish which of the procurement handbook sections (HR-033 on page 33 or HR-093 on page 93) is current.",
+      "expected_sources": [
+        "large_hr_handbook.pdf"
+      ],
+      "retrieved_source_documents": [
+        "large_hr_handbook.pdf"
+      ],
+      "missing_expected_sources": [],
+      "source_coverage": 1.0,
+      "expected_fact_count": 5,
+      "matched_facts": [
+        "vendor management",
+        "documented workflow",
+        "retain relevant records",
+        "approved systems",
+        "escalate unusual circumstances"
+      ],
+      "missing_facts": [],
+      "fact_coverage": 1.0,
+      "expected_facts_for_manual_review": [
+        "vendor management",
+        "documented workflow",
+        "retain relevant records",
+        "approved systems",
+        "escalate unusual circumstances"
+      ],
+      "manual_answer_correctness": null,
+      "manual_citation_support": null
+    },
+    {
+      "question": "What does the handbook say about business continuity?",
+      "status": "COMPLETED",
+      "answer": "Based on the provided evidence, regarding Business Continuity, employees and managers must:\n* Follow the documented workflow [Evidence 1, Evidence 2, Evidence 3].\n* Retain relevant records [Evidence 1, Evidence 2, Evidence 3].\n* Use approved systems [Evidence 1, Evidence 2, Evidence 3].\n* Escalate unusual circumstances through the appropriate departmental channel [Evidence 1, Evidence 2, Evidence 3].\n\nAdditionally, the requirements may depend on the employee's role, location, and applicable internal procedures (noting that the text for this point is cut off in the provided excerpts) [Evidence 1, Evidence 2, Evidence 3].",
+      "expected_sources": [
+        "large_hr_handbook.pdf"
+      ],
+      "retrieved_source_documents": [
+        "large_hr_handbook.pdf"
+      ],
+      "missing_expected_sources": [],
+      "source_coverage": 1.0,
+      "expected_fact_count": 5,
+      "matched_facts": [
+        "business continuity",
+        "documented workflow",
+        "retain relevant records",
+        "approved systems",
+        "escalate unusual circumstances"
+      ],
+      "missing_facts": [],
+      "fact_coverage": 1.0,
+      "expected_facts_for_manual_review": [
+        "business continuity",
+        "documented workflow",
+        "retain relevant records",
+        "approved systems",
+        "escalate unusual circumstances"
+      ],
+      "manual_answer_correctness": null,
+      "manual_citation_support": null
+    }
+  ],
+  "limitations": [
+    "Source coverage measures whether expected source filenames appear in retrieved evidence. It does not prove that citations support individual claims.",
+    "Expected-fact coverage uses exact, case-insensitive phrase matching. It can miss correct paraphrases and cannot independently verify factual correctness.",
+    "The dataset is small. Results should not be treated as a reliable general accuracy benchmark."
+  ]
+}

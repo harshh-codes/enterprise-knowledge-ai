@@ -1,0 +1,33 @@
+{
+  "queries_evaluated": 3,
+  "answer_correctness_rate": 1.0,
+  "citation_support_rate": 1.0,
+  "results": [
+    {
+      "question": "How many annual leave days are stated in the sample HR policy?",
+      "correctness": 1,
+      "citation_support": 1,
+      "expected_sources": [
+        "sample_hr_policy.pdf"
+      ]
+    },
+    {
+      "question": "What do the two annual leave documents state, and is it clear which policy is current?",
+      "correctness": 1,
+      "citation_support": 1,
+      "expected_sources": [
+        "sample_hr_policy.pdf",
+        "annual_leave_revision_test.pdf"
+      ]
+    },
+    {
+      "question": "What topics are covered in the HR handbook?",
+      "correctness": 1,
+      "citation_support": 1,
+      "expected_sources": [
+        "large_hr_handbook.pdf"
+      ]
+    }
+  ],
+  "note": "Scores are manually judged and reflect only this test dataset. They are not an independently validated benchmark."
+}

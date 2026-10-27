@@ -1,0 +1,104 @@
+
+[
+  {
+    "question": "How many annual leave days are stated in the sample HR policy?",
+    "expected_answer_points": [
+      "The sample HR policy states 20 annual leave days per calendar year."
+    ],
+    "expected_sources": [
+      "sample_hr_policy.pdf"
+    ],
+    "expected_facts": [
+      "20 annual leave days per calendar year"
+    ]
+  },
+  {
+    "question": "What do the two annual leave documents state, and is it clear which policy is current?",
+    "expected_answer_points": [
+      "The sample HR policy states 20 annual leave days per calendar year.",
+      "The fictional revision test states 25 working days per calendar year.",
+      "The documents do not establish which policy is current because the revision test has no confirmed effective date or supersession status."
+    ],
+    "expected_sources": [
+      "sample_hr_policy.pdf",
+      "annual_leave_revision_test.pdf"
+    ],
+    "expected_facts": [
+      "sample HR policy states 20 days",
+      "fictional revision test states 25 working days",
+      "current policy cannot be determined from these documents"
+    ]
+  },
+  
+{
+  "question": "What topics are covered in the HR handbook?",
+  "expected_answer_points": [
+    "Business travel",
+    "Data protection",
+    "Meeting procedures",
+    "Internal communication",
+    "Vendor management",
+    "Business continuity"
+  ],
+  "expected_sources": [
+    "large_hr_handbook.pdf"
+  ],
+  "expected_facts": [
+    "business travel",
+    "data protection",
+    "meeting procedures",
+    "internal communication",
+    "vendor management",
+    "business continuity"
+  ]
+},
+{
+  "question": "What does the handbook say about meeting procedures?",
+  "expected_answer_points": [
+    "The Meeting Procedures section describes the use of documented workflows, record retention, approved systems, and escalation of unusual circumstances."
+  ],
+  "expected_sources": [
+    "large_hr_handbook.pdf"
+  ],
+  "expected_facts": [
+    "meeting procedures",
+    "documented workflow",
+    "retain relevant records",
+    "approved systems",
+    "escalate unusual circumstances"
+  ]
+},
+{
+  "question": "What does the handbook say about vendor management?",
+  "expected_answer_points": [
+    "The Vendor Management section describes documented workflows, record retention, approved systems, and escalation of unusual circumstances."
+  ],
+  "expected_sources": [
+    "large_hr_handbook.pdf"
+  ],
+  "expected_facts": [
+    "vendor management",
+    "documented workflow",
+    "retain relevant records",
+    "approved systems",
+    "escalate unusual circumstances"
+  ]
+},
+{
+  "question": "What does the handbook say about business continuity?",
+  "expected_answer_points": [
+    "The Business Continuity section describes documented workflows, record retention, approved systems, and escalation of unusual circumstances."
+  ],
+  "expected_sources": [
+    "large_hr_handbook.pdf"
+  ],
+  "expected_facts": [
+    "business continuity",
+    "documented workflow",
+    "retain relevant records",
+    "approved systems",
+    "escalate unusual circumstances"
+  ]
+}
+
+]
